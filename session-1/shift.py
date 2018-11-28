@@ -6,7 +6,6 @@ def shift(arr, k):
   start, index = 0, 0  # start and current index.
   next_num = arr[index]
   for iteration in range(len(arr)):
-    #print(iteration)
     destination = index - (len(arr) - k)
     next_num, arr[destination] = arr[destination], next_num
     # Convert possibly negative indexes to positive for next itertion.
@@ -15,10 +14,8 @@ def shift(arr, k):
       index += 1
       start = index
       next_num = arr[index]
-    #print(arr)
   return arr
 
-#print(shift([1, 2, 3, 4, 5, 6], 3))
 
 assert shift([1], 0) == [1]
 assert shift([1], 1) == [1]
