@@ -27,6 +27,6 @@ assert shift([1, 2, 3, 4], 3) == [2, 3, 4, 1]
 assert shift([1, 2, 3, 4], 5) == [4, 1, 2, 3]
 assert shift([1, 2, 3, 4, 5, 6], 3) == [4, 5, 6, 1, 2, 3]
 assert shift([1, 2, 3, 4, 5, 6], 2) == [5, 6, 1, 2, 3, 4]
-# # Array does not need to be sorted.
+# Array does not need to be sorted.
 assert shift(['c', 'd', 'a'], 7) == ['a', 'c', 'd']
 print('All tests passed!')
