@@ -15,7 +15,8 @@ class Queue:
     self.s1.push(item)
 
   def dequeue(self):
-    """If s2 is empty, reverse items from s1 onto s2 and pop. Time: O(n)."""
+    """If s2 is empty, reverse items from s1 onto s2 and pop.
+    Time: O(n) in the worst case."""
     if self.s2.is_empty():
       while not self.s1.is_empty():
         self.s2.push(self.s1.pop())
