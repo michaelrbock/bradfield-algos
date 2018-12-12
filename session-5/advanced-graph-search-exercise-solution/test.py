@@ -28,7 +28,7 @@ def visualize(algorithm, grid, goal, explored):
         path.add(node)
         cost += COSTS[grid[node[0]][node[1]]]
         node = explored[node]
-
+    
     # Prepare a visual form of grid, with path overlaid
     visualization = '\n'.join(
         ' '.join(sym + ('\u0359' if (i, j) in path else '')
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     choice = sys.argv[1]
     if choice not in {'little', 'big', 'random'}:
         print('Usage: python3 test.py (little|big|random)')
-
+    
     start = (0, 0)
     if choice == 'little':
         grid = [
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         grid = [[random.choice(types) for _ in range(rows)] for _ in range(cols)]
         grid[start[0]][start[1]] = START
         grid[goal[0]][goal[1]] = GOAL
-
+    
     # Run each algorithm and visualize the result
     print(visualize('BFS', grid, goal, bfs(grid, start, goal)))
     print(visualize('DFS', grid, goal, dfs(grid, start, goal)))

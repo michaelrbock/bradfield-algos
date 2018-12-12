@@ -11,3 +11,4 @@ COSTS = {
     MOUNTAIN: float('inf'),
     RIVER: 2
 }
+
