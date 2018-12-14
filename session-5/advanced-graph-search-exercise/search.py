@@ -18,9 +18,9 @@ def _neighbors(grid, row, col):
 
 def graph_search(grid, start, goal, cost_fxn):
   explored = {}  # { (row, col) : previous (row, col) }
-  to_visit = [(0, start, None)]  # (priority, node, previous)
+  to_visit = [(0, 0, start, None)]  # (priority, cost, node, previous)
   while to_visit:
-    cost_so_far, (row, col), prev = heapq.heappop(to_visit)
+    _, cost_so_far, (row, col), prev = heapq.heappop(to_visit)
     if (row, col) in explored:
       continue
     explored[(row, col)] = prev
@@ -28,9 +28,10 @@ def graph_search(grid, start, goal, cost_fxn):
       break
     for (next_row, next_col), cost in _neighbors(grid, row, col):
       if (next_row, next_col) not in explored:
+        new_cost = cost_so_far + cost
         heapq.heappush(
           to_visit,
-          (cost_fxn(explored, cost_so_far + cost, (next_row, next_col), goal),
+          (cost_fxn(explored, new_cost, (next_row, next_col), goal), new_cost,
             (next_row, next_col), (row, col)))
   return explored
 
@@ -101,9 +102,9 @@ def a_star(grid, start, goal):
 
 def a_star1(grid, start, goal):
   explored = {}  # { (row, col) : previous (row, col) }
-  to_visit = [(0, start, None)]  # (priority, node, previous)
+  to_visit = [(0, 0, start, None)]  # (priority, cost, node, previous)
   while to_visit:
-    cost_so_far, (row, col), prev = heapq.heappop(to_visit)
+    _, cost_so_far, (row, col), prev = heapq.heappop(to_visit)
     if (row, col) in explored:
       continue
 
@@ -115,6 +116,6 @@ def a_star1(grid, start, goal):
       new_cost = cost_so_far + cost
       if (next_row, next_col) not in explored:
         heapq.heappush(to_visit,
-          (new_cost + _heuristic((next_row, next_col), goal),
+          (new_cost + _heuristic((next_row, next_col), goal), new_cost,
             (next_row, next_col), (row, col)))
   return explored
